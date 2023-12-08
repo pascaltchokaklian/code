@@ -48,6 +48,7 @@ def base_map(request):
     # compute_all_month_stat(my_strava_user_id)
     
     # Les cols passés
+    
     colOK = cols_effectue(conn,my_strava_user_id )    
     listeOK = []
     for oneCol in colOK:        
