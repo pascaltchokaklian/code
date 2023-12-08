@@ -1,7 +1,9 @@
 import cols_tools as ct
 import col_dbtools as cdb
 
+#
 # Create your tests here.
+#
 
 maMaison = ct.PointGPS()
 maMaison.lat = 43.76666689338895

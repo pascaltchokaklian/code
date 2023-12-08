@@ -139,7 +139,6 @@ def compute_cols_by_act( conn, my_strava_user_id,myActivity_id):
         for act in lact:
             act.act_status = 1
             act.save()
-
                                            
 def cols_effectue(conn, suid):
 
