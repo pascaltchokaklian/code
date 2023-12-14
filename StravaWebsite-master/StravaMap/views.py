@@ -25,7 +25,9 @@ from social_django.models import UserSocialAuth
 
 def base_map(request):
 
-    user = request.user # Pulls in the Strava User data                
+    user = request.user # Pulls in the Strava User data        
+    #user = "tpascal"    
+
     f_debug_trace("views.py","base_map","user = "+str(user))
     my_strava_user_id = get_strava_user_id(request,user)
                                   

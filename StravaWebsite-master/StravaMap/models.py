@@ -265,7 +265,7 @@ class Month_stat(models.Model):
 	col_count = models.IntegerField(null=True)
 	col2000_count = models.IntegerField(null=True)
 	top_alt_col = models.IntegerField(null=True)
-
+	
 	def yearmonth_html(self):
 		annee = self.yearmonth[0:4]
 		mois = int(self.yearmonth[4:])		
@@ -288,5 +288,9 @@ class Month_stat(models.Model):
 		sSecondes = "{:02d}".format(secondes)	 		
 		hms = sHeure+"h"+sMinutes
 		return hms		
+	
+	
+	
+
 
 	
