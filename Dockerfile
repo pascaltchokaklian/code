@@ -10,7 +10,7 @@ COPY . /StravaWebsite-master
 # Install new pip
 RUN pip install --upgrade pip
 
-RUN pip install --root-user-action=ignore
+RUN python3 -m venv /StravaWebsite-master/venv
 
 # Install the application dependencies
 RUN pip install -r requirements.txt
