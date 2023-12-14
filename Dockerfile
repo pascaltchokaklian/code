@@ -8,7 +8,7 @@ WORKDIR /StravaWebsite-master
 COPY . /StravaWebsite-master
 
 # Install new pip
-run: pip install --upgrade pip
+RUN pip install --upgrade pip
 
 # Install the application dependencies
 RUN pip install -r requirements.txt
