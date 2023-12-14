@@ -99,7 +99,6 @@ def getColsVisited(colsList: ColsList, pointsList: GPSPointsList):
 
     return visitedColList
 
-
 ####################################################
 
 def getColsVisitedList(colsList: ColsList, onePoint: PointGPS ):
