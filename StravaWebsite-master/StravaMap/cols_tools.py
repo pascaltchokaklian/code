@@ -2,9 +2,7 @@ from numpy import sin, cos, arccos, pi, round
 import numpy as N
 import requests
 from StravaMap.models import Strava_user
-
 from StravaMap.vars import  f_debug_trace, get_app_client_id, get_app_client_secret
-
 import warnings
 
 warnings.filterwarnings('ignore', message='Unverified HTTPS request')

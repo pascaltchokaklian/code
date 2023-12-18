@@ -3,7 +3,6 @@ import datetime
 import sqlite3
 import time
 
-import pytz
 from StravaMap import cols_tools as ct
 from StravaMap.models import Activity, Col, Col_counter as cc, Col_perform as cp, Country, Month_stat, Region, User_var
 from django.db.models import F
