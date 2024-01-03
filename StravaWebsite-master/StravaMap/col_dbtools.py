@@ -82,7 +82,6 @@ def insert_activity (conn, strava_user_id, strava_id, act_name, act_start_date, 
         #print("Enregistrement inséré avec succès dans la table StravaMap_activity")                
     except sqlite3.Error as error:
         print("Erreur lors de l'insertion dans la table StravaMap_activity", error)
-
         
 #############################################################################
 
