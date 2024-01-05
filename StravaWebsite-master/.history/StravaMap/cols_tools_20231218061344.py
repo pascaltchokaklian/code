@@ -7,6 +7,7 @@ import warnings
 
 warnings.filterwarnings('ignore', message='Unverified HTTPS request')
 
+
 ####################################################
 
 class PointGPS:

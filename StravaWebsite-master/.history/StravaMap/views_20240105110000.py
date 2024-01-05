@@ -76,12 +76,9 @@ def base_map(request):
         
         main_map_html = main_map._repr_html_() # Get HTML for website
 
-        context = {
-            "main_map":main_map_html
-        }
-
-    else:
-        context = None
+    context = {
+        "main_map":main_map_html
+    }
                                     
     return render(request, 'index.html', context)
 

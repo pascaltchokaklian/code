@@ -32,8 +32,6 @@ def base_map(request):
 
     if (str(user) != 'AnonymousUser'):
 
-        conn = create_connection('db.sqlite3')    
-
         my_strava_user_id = get_strava_user_id(request,user)
                                         
         # Make your map object
@@ -46,42 +44,49 @@ def base_map(request):
         feature_group_Piste = folium.FeatureGroup(name="Piste").add_to(main_map)    
         feature_group_Sentier = folium.FeatureGroup(name="Sentier").add_to(main_map)    
         folium.LayerControl().add_to(main_map)
-                                    
-        # Les cols passés    
-        colOK = cols_effectue(conn,my_strava_user_id )    
-        listeOK = []
-        for oneCol in colOK:        
-            listeOK.append(oneCol[3])   # col_code
-            
-        # Tous les cols                
-        myColsList =  select_all_cols(conn,view_region_info)
-                    
-        # Plot Cols onto Folium Map
-        for oneCol in myColsList:
-            myCol = ct.PointCol()
-            myCol.setPoint(oneCol)
-            location = [myCol.lat,myCol.lon]
-            colColor = "red"
-            if myCol.col_code in listeOK :
-                colColor = "green"
 
-            # Surface
-            if  myCol.col_type == "R":            
-                folium.Marker(location, popup=myCol.name+" ("+str(myCol.alt)+"m)",icon=folium.Icon(color=colColor, icon="flag")).add_to(feature_group_Road)        
-            if  myCol.col_type == "P":            
-                folium.Marker(location, popup=myCol.name+" ("+str(myCol.alt)+"m)",icon=folium.Icon(color=colColor, icon="flag")).add_to(feature_group_Piste)        
-            if  myCol.col_type == "S":            
-                folium.Marker(location, popup=myCol.name+" ("+str(myCol.alt)+"m)",icon=folium.Icon(color=colColor, icon="flag")).add_to(feature_group_Sentier)        
+    conn = create_connection('db.sqlite3')    
+    
+    
             
+    
+
+    # Statistiques Mensuelles     
+    # compute_all_month_stat(my_strava_user_id)
+    
+    # Les cols passés
+    
+    colOK = cols_effectue(conn,my_strava_user_id )    
+    listeOK = []
+    for oneCol in colOK:        
+        listeOK.append(oneCol[3])   # col_code
         
-        main_map_html = main_map._repr_html_() # Get HTML for website
+    # Tous les cols                
+    myColsList =  select_all_cols(conn,view_region_info)
+                
+    # Plot Cols onto Folium Map
+    for oneCol in myColsList:
+        myCol = ct.PointCol()
+        myCol.setPoint(oneCol)
+        location = [myCol.lat,myCol.lon]
+        colColor = "red"
+        if myCol.col_code in listeOK :
+            colColor = "green"
 
-        context = {
-            "main_map":main_map_html
-        }
+        # Surface
+        if  myCol.col_type == "R":            
+            folium.Marker(location, popup=myCol.name+" ("+str(myCol.alt)+"m)",icon=folium.Icon(color=colColor, icon="flag")).add_to(feature_group_Road)        
+        if  myCol.col_type == "P":            
+            folium.Marker(location, popup=myCol.name+" ("+str(myCol.alt)+"m)",icon=folium.Icon(color=colColor, icon="flag")).add_to(feature_group_Piste)        
+        if  myCol.col_type == "S":            
+            folium.Marker(location, popup=myCol.name+" ("+str(myCol.alt)+"m)",icon=folium.Icon(color=colColor, icon="flag")).add_to(feature_group_Sentier)        
+        
+    
+    main_map_html = main_map._repr_html_() # Get HTML for website
 
-    else:
-        context = None
+    context = {
+        "main_map":main_map_html
+    }
                                     
     return render(request, 'index.html', context)
 

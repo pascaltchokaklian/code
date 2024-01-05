@@ -79,9 +79,6 @@ def base_map(request):
         context = {
             "main_map":main_map_html
         }
-
-    else:
-        context = None
                                     
     return render(request, 'index.html', context)
 
