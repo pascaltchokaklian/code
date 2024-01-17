@@ -244,7 +244,7 @@ class User_dashboard(models.Model):
 	def set_run_year_km(self):	
 		## All Activities 		
 		
-		lActivity = Activity.objects.filter(strava_user_id=self.strava_user_id).filter(act_start_date__gt="2024-01-01").filter(act_type="Run")				
+		lActivity = Activity.objects.filter(strava_user_id=self.strava_user_id).filter(act_start_date__gt="2023-01-01").filter(act_type="Run")				
 		distance_RY = 0
 		for one_act in lActivity:
 			distance_RY = distance_RY + one_act.act_dist/1000
