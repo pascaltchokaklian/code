@@ -14,7 +14,7 @@ WORKDIR /myapp
 # Copy the application files into the working directory
 COPY . /myapp
 
-RUN python -m venv env
+RUN python -m venv /myapp/env
 
 ENV PATH="/env/bin/:$PATH"
 
