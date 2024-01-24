@@ -30,7 +30,7 @@ COPY requirements.txt /myapp/
 
 RUN pip install -r requirements.txt
 
-EXPOSE 8080
+EXPOSE 8000
 
 # Define the entry point for the container
-CMD ["python", "manage.py", "runserver", "127.0.0.1:8080"]
+CMD ["python", "manage.py", "runserver", "127.0.0.1:8000"]
