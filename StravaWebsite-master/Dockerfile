@@ -22,7 +22,7 @@ ENV PATH="/env/bin/:$PATH"
 # ADD Shell File
 #################
 
-COPY entrypoint.sh /myapp/entrypoint.sh
+COPY entrypoint.sh /myapp/StravaWebsite-master/entrypoint.sh
 RUN python -m pip install --upgrade pip
 
 # Install the application dependencies
