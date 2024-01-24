@@ -1,11 +1,12 @@
 # Use the official Python image as the base image
 FROM python:3.11.7
 
-ENV PYTHONBUFFERD 1
+# set environment variables
+ENV PIP_DISABLE_PIP_VERSION_CHECK 1
+ENV PYTHONUNBUFFERED 1
 ENV PYTHONDONTWRTBYTECODE 1
 
 # Set the working directory in the container
-
 RUN mkdir /myapp
 
 WORKDIR /myapp
@@ -32,4 +33,4 @@ RUN pip install -r requirements.txt
 EXPOSE 8080
 
 # Define the entry point for the container
-CMD ["python", "manage.py", "runserver", "0.0.0.1:8080"]
+CMD ["python", "manage.py", "runserver", "127.0.0.1:8080"]
