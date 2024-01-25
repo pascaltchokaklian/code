@@ -28,8 +28,7 @@ RUN python -m pip install --upgrade pip
 # Install the application dependencies
 COPY requirements.txt /myapp/
 
-# RUN pip install -r requirements.txt
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install -r requirements.txt
 
 EXPOSE 8000
 
