@@ -37,6 +37,4 @@ EXPOSE 8000
 COPY . .
 
 # Define the entry point for the container
-# CMD ["python", "manage.py", "runserver", "127.0.0.1:8080"]
-# Command to start the server
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "StravaWebsite-master.StravaWebsite.wsgi"]
+CMD ["python", "manage.py", "runserver", "127.0.0.1:8080"]
