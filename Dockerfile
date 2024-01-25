@@ -28,9 +28,15 @@ RUN python -m pip install --upgrade pip
 # Install the application dependencies
 COPY requirements.txt /myapp/
 
-RUN pip install -r requirements.txt
+# RUN pip install -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
 EXPOSE 8000
 
+# Copy the rest of the project files
+COPY . .
+
 # Define the entry point for the container
-CMD ["python", "manage.py", "runserver", "127.0.0.1:8080"]
+# CMD ["python", "manage.py", "runserver", "127.0.0.1:8080"]
+# Command to start the server
+CMD ["gunicorn", "--bind", "0.0.0.0:8000", "StravaWebsite-master.StravaWebsite.wsgi"]
