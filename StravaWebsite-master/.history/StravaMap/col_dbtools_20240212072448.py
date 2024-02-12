@@ -533,13 +533,14 @@ def set_col_count_list_this_year(strava_user_id):
 #######################################################################
 
 def get_last_activity_more_than(strava_user_id, distance):
-        
+    
+    distance = 100000000
     txt_ret = "*** RECORD *** Plus longue Sortie **** Bravo ***"
 
     for one_act in Activity.objects.filter(strava_user_id=strava_user_id).order_by("-act_start_date"):
         if one_act.act_type == "Ride":
             if one_act.act_dist > distance: 
-                txt_ret = 'Plus grande sortie depuis "' + one_act.act_name + '" le '
+                txt_ret += 'Plus grande sortie depuis "' + one_act.act_name + '" le '
                 txt_ret += str(one_act.act_start_date.day) + "/" + str(one_act.act_start_date.month) + "/" + str(one_act.act_start_date.year) + ' ( '
                 txt_ret += str(one_act.act_dist/1000) + ' Km )'
 
@@ -553,12 +554,13 @@ def get_last_activity_more_than(strava_user_id, distance):
 
 def get_last_activity_den_than(strava_user_id, deniv):
 
-    txt_ret = "*** RECORD *** Plus gros denivelé **** Bravo ***"
+    #txt_ret = str(deniv)+" m - " 
+    txt_ret = ""
 
     for one_act in Activity.objects.filter(strava_user_id=strava_user_id).order_by("-act_start_date"):
         if one_act.act_type == "Ride":
             if one_act.act_den > deniv: 
-                txt_ret = 'Plus gros denivellé depuis "' + one_act.act_name + '" le '
+                txt_ret += 'Plus gros denivellé depuis "' + one_act.act_name + '" le '
                 txt_ret += str(one_act.act_start_date.day) + "/" + str(one_act.act_start_date.month) + "/" + str(one_act.act_start_date.year)+ ' ( '
                 txt_ret += str(one_act.act_den) + ' m )'
 
@@ -573,12 +575,11 @@ def get_last_activity_den_than(strava_user_id, deniv):
 def get_last_speed_activity( strava_user_id,distance,duree):
 
     vitesse = format(distance/duree*3.6,'.1f')
-    txt_ret = str(vitesse) +" Km/h >>> " 
-    txt_ret += "*** RECORD *** La plus rapide **** Bravo ***"
+    txt_ret = str(vitesse) +" Km/h - " 
+    
     for one_act in Activity.objects.filter(strava_user_id=strava_user_id).order_by("-act_start_date"):
         if one_act.act_type == "Ride":
             if one_act.act_dist/one_act.act_time*3.6 > distance/duree*3.6: 
-                txt_ret = str(vitesse) +" Km/h - " 
                 txt_ret += 'La plus rapide depuis "' + one_act.act_name + '" le '
                 txt_ret += str(one_act.act_start_date.day) + "/" + str(one_act.act_start_date.month) + "/" + str(one_act.act_start_date.year)+ ' ( '
                 txt_ret += str(format(one_act.act_dist/one_act.act_time*3.6,'.1f')) + ' Km/h )'

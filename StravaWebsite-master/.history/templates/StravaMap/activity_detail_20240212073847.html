@@ -4,13 +4,13 @@
     <hr />    
     <table class="tftable" border="0">
         <tr>
-                <td><h1>{{ object.act_name }}</h1></td>
+                <td><h1>{{ object.act_name }}{{ object.act_start_date|date:"d M Y" }}</h1></td>
                 <td><h4>   {{ object.act_start_date|date:"d M Y" }}</h4></td>
                 <td><h5>  ( {{ object.act_type }} Strava = {{ object.strava_id }} )</h5></td>
         </tr>
         <tr>
-                <td><h4>Distance = {{ object.get_act_dist_km|floatformat:2 }} km</h4></td>
-                <td><h5>Dénivelé = {{ object.act_den }} m </h5></td>
+                <td>Distance = {{ object.get_act_dist_km|floatformat:2 }} km</td>
+                <td>Dénivelé = {{ object.act_den }} m </td>
         </tr>
         
             {%  for info in object.get_info_txt %}                 
